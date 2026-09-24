@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=c9ca2588-d1df-4cfa-99bc-856fe5e70e90
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡ACENTUADOR! Práctica Interactiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+<canvas id="fondoCanvas"></canvas>
+
+<div class="container game-content-hidden" id="game-container"> 
+    <h1 id="game-title">Práctica de Tablas de Multiplicar</h1>
+
+    <div class="header-info">
+        <span id="score-display">Puntuación: 0</span>
+        <span id="center-time-display" style="display:none;">Tiempo: 0s</span> <span id="right-info-display"></span> </div>
+
+    <div id="question-area">
+        <p>Selecciona la forma correcta de acentuación:</p>
+        <div id="number-to-round"></div> 
+        <div id="feedback-message"></div>
+    </div>
+
+    <div id="options-container">
+        <button class="option-button" id="option1" disabled></button>
+        <button class="option-button" id="option2" disabled></button>
+        <button class="option-button" id="option3" disabled></button>
+    </div>
+    
+    <button id="next-question-button" style="display:none;">Siguiente Pregunta</button>
+    
+    <button id="main-menu-button" class="mode-button" style="display:none;">Volver al Menú Principal</button>
+</div>
+
+<div id="mode-selection-modal" class="modal">
+    <div id="logo-container">
+        <img src="fondo/fondo.png" alt="MULTIPLICADOR! by profe dani" id="game-logo">
+    </div>
+    
+    <div id="mode-selection-area">
+        <h2>Elige tu desafío</h2>
+        <p>Selecciona cómo quieres practicar:</p>
+        <button id="mode-chrono-button" class="mode-button">Contrarreloj</button>
+        <button id="mode-sudden-death-button" class="mode-button" style="background-color: #dc3545;">Muerte Súbita</button>
+        <button id="mode-free-button" class="mode-button" style="background-color: #28a745;">Práctica Libre</button>
+    </div>
+    
+    <div id="mute-toggle-button-container">
+        <span id="mute-message">Pulsa para activar el sonido</span>
+        <button id="mute-toggle-button" class="mode-button">🔇</button>
+    </div>
+</div>
+
+<div id="time-selection-modal" class="modal" style="display:none;">
+    <div id="time-selection-area">
+        
+    </div>
+</div>
+
+<div id="player-name-modal" class="modal" style="display:none;">
+    <div id="player-name-area">
+        <h2 id="player-name-title">¡A Jugar!</h2>
+        <p>Introduce tu nombre para el ranking:</p>
+        <input type="text" id="player-name-input" placeholder="Máx. 15 caracteres" maxlength="15">
+        <button id="set-name-button" class="mode-button">Empezar</button>
+    </div>
+</div>
+
+<div id="ranking-modal" class="modal" style="display:none;">
+    <div id="ranking-area">
+        <h2 id="end-game-title">Fin de la Partida</h2>
+        <div class="summary-stats">
+            <div style="color:#007bff;"><span>Total:</span> <span id="summary-total">0</span></div>
+            <div style="color:#28a745;"><span>Aciertos:</span> <span id="summary-correct">0</span></div>
+            <div style="color:#dc3545;"><span>Errores:</span> <span id="summary-incorrect">0</span></div>
+            <div class="score-per-sec"><span>Aciertos/seg:</span> <span id="summary-aps">0.00</span></div>
+        </div>
+
+        <h3>Ranking (Top 5)</h3>
+<button id="reset-ranking-button">Resetear</button>
+        <table id="ranking-table">
+            <thead>
+                <tr>
+                    <th>Pos.</th>
+                    <th>Nombre</th>
+                    <th>Puntuación</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
+        <div id="revisit-options">
+            <button id="same-player-button" class="mode-button" style="display:none;"></button>
+            <button id="other-player-button" class="mode-button" style="display:none;"></button>
+            <button id="mode-select-button" class="mode-button">Elegir modo de juego</button>
+        </div>
+    </div>
+</div>
+
+<script src="audio.js"></script>
+<script src="background-animation.js"></script>
+<script src="dom-references.js"></script>
+<script src="ui-manager.js"></script>
+<script src="ranking.js"></script>
+<script src="game-logic.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+/* -------------------- */
+/* Estilos Generales     */
+/* -------------------- */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: transparent; 
+}
+
+/* Estilos para el Canvas de Fondo */
+#fondoCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    width: 100%;
+    max-width: 450px; 
+    text-align: center;
+    z-index: 1; 
+}
+
+.game-content-hidden {
+    display: none; 
+}
+
+h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.header-info {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #222; 
+}
+
+#score-display { color: #28a745; }
+#center-time-display { color: #007bff; font-weight: 600; }
+#right-info-display { color: #dc3545; }
+#right-info-display.time-warning { color: #dc3545; }
+
+
+#question-area { min-height: 120px; margin-bottom: 20px; }
+#number-to-round { font-size: 3em; font-weight: 700; color: #333; margin: 10px 0; display: flex; justify-content: center; }
+.highlighted-digit { background-color: #ffc107; padding: 0 3px; border-radius: 4px; }
+#rounding-unit { font-size: 1.3em; color: #6c757d; margin-bottom: 20px; }
+
+#options-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+
+.option-button, .mode-button {
+    padding: 15px;
+    font-size: 1.5em;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+
+#mode-selection-area button { margin-bottom: 15px; }
+#time-selection-area button { background-color: #17a2b8; margin-bottom: 8px; padding: 10px; font-size: 1.2em; }
+
+#next-question-button {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #ffc107;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.option-button:hover:not(:disabled), .mode-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#feedback-message {
+    margin-bottom: 15px; /* Ajusta este valor para subir o bajar el texto */
+    font-weight: bold;
+    min-height: 24px; /* Le damos una altura mínima para que no salte la interfaz */
+}
+
+.option-button:disabled { opacity: 0.6; cursor: default; }
+.feedback-correct { color: #28a745; opacity: 1 !important; }
+.feedback-incorrect { color: #dc3545; opacity: 1 !important; }
+.correct-answer { background-color: #28a745 !important; color: white; transform: scale(1.05); box-shadow: 0 0 15px #28a745; }
+.incorrect-choice { background-color: #dc3545 !important; color: white; }
+
+.modal {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto; 
+}
+
+/* -------------------- */
+/* Estilos del Logo */
+/* -------------------- */
+#logo-container {
+    text-align: center; 
+    margin-bottom: 20px; 
+    z-index: 11; 
+}
+
+#game-logo {
+    max-width: 100%; 
+    height: auto;
+    width: 300px; 
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+    animation: pulsating-zoom 2s ease-in-out infinite;
+}
+
+/* 🔴 KEYFRAMES DE LA ANIMACIÓN PULSANTE */
+@keyframes pulsating-zoom {
+    0% {
+        transform: scale(1.20);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05); /* Ligero Zoom Out */
+        opacity: 0.5;
+    }
+    
+    100% {
+        transform: scale(1.20); /* Reset (Fade In/Zoom In) */
+        opacity: 1;
+    }
+}
+
+
+
+#mode-selection-modal {
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+}
+
+#ranking-area, #player-name-area, #mode-selection-area, #time-selection-area {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Centrar el texto dentro de los modales */
+    position: relative;
+}
+
+#mode-selection-area {
+    max-width: 350px; 
+    margin-bottom: 20px; /* Espacio para el nuevo botón de mute */
+}
+
+/* 🔴 NUEVOS ESTILOS para el contenedor del botón de mute */
+#mute-toggle-button-container {
+    display: flex; /* Para alinear el texto y el botón */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    margin-top: 0px; /* Espacio superior para separarlo del menú */
+    gap: 10px; /* Espacio entre el texto y el botón */
+    color: #ffffff; /* Color del texto del mensaje */
+    font-size: 1em;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(0,0,0,0.7); /* Para que el texto resalte sobre el fondo */
+    flex-wrap: wrap; /* Permitir que el texto y el botón se envuelvan en pantallas pequeñas */
+    max-width: 300px; /* Limitar el ancho para que no sea demasiado grande */
+    text-align: center;
+}
+
+#mute-toggle-button {
+    /* Quitamos el position absolute que tenía antes */
+    position: static; 
+    width: auto;
+    padding: 5px 10px;
+    font-size: 1.5em;
+    background-color: #6c757d;
+    border-radius: 50%; 
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    margin: 0; /* Asegurarse de que no tenga márgenes que lo separen */
+    flex-shrink: 0; /* Evitar que el botón se encoja */
+}
+#mute-toggle-button:hover { background-color: #5a6268; transform: translateY(-1px); }
+
+
+#player-name-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* -------------------- */
+/* Estilos de Resumen de Partida */
+/* -------------------- */
+.summary-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    margin: 15px 0;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.summary-stats div {
+    flex-basis: 48%;
+    margin-bottom: 10px;
+    padding: 8px 5px; 
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.summary-stats div[style*="#007bff"] { 
+    background-color: #f0f8ff; 
+    color: #007bff;
+}
+.summary-stats div[style*="#28a745"] { 
+    background-color: #e6ffe6; 
+    color: #28a745;
+}
+.summary-stats div[style*="#dc3545"] { 
+    background-color: #fff0f0; 
+    color: #dc3545; 
+}
+
+.summary-stats .score-per-sec { 
+    background-color: #fff3cd; 
+    color: #ffc107;
+}
+
+.summary-stats span {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+#ranking-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.95em; }
+#ranking-table th, #ranking-table td { border: 1px solid #eee; padding: 8px; text-align: center; }
+#ranking-table th { background-color: #f0f0f0; color: #333; }
+.you-score { background-color: #ffe082 !important; font-weight: bold; }
+
+/* Estilos de Botones de Rejugabilidad */
+#revisit-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#revisit-options button {
+    padding: 12px;
+    font-size: 1.2em;
+}
+
+#same-player-button { background-color: #28a745; } 
+#other-player-button { background-color: #17a2b8; } 
+#mode-select-button { background-color: #6c757d; } 
+
+/* Estilo para el nuevo botón en el modo libre */
+#main-menu-button {
+     margin-top: 15px; 
+     background-color: #6c757d;
+     padding: 12px;
+     font-size: 1.2em;
+     width: 100%;
+}
+
+
+@media (max-width: 500px) {
+    .container { padding: 15px; box-shadow: none; max-width: none; }
+    .summary-stats { font-size: 1em; }
+}
+
+/* --- ESTILO AÑADIDO PARA EL BOTÓN DE RESETEO --- */
+#reset-ranking-button {
+    display: block; /* Necesario para poder usar márgenes automáticos para centrar */
+    margin-left: auto; /* Centra el elemento horizontalmente */
+    margin-right: auto; /* Centra el elemento horizontalmente */
+    width: fit-content; /* Ajusta el ancho del botón a su contenido */
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #dc3545;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    cursor: pointer;
