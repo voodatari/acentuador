@@ -3,11 +3,11 @@
 // Nuevas variables para el temporizador por pregunta
 let questionTimer = null;
 let currentQuestionTimeLeft = 0;
-// Lista de palabras cargada desde es_EC.dic
+// Lista de palabras cargada desde es_ec.dic
 let wordList = [];
 // Cargar diccionario (se ejecuta al inicio)
 function loadDictionary() {
-    fetch('es_EC.dic')
+    fetch('es_ec.dic')
         .then(r => r.text())
         .then(text => {
             wordList = text.split(/\r?\n/)
@@ -19,7 +19,7 @@ function loadDictionary() {
             console.log('Diccionario cargado, palabras:', wordList.length);
         })
         .catch(e => {
-            console.warn('No se pudo cargar es_EC.dic:', e);
+            console.warn('No se pudo cargar es_ec.dic:', e);
         });
 }
 
