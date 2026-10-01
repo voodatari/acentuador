@@ -7,7 +7,7 @@ function loadRanking(mode) {
         return;
     }
     try {
-        const rankingKey = `multiplicacionRanking_${mode}`;
+        const rankingKey = `acentuadorRanking_${mode}`;
         const storedScores = localStorage.getItem(rankingKey);
         scores = storedScores ? JSON.parse(storedScores) : [];
     } catch (e) {
@@ -29,7 +29,7 @@ function saveScore(name, finalScore, mode) {
     scores = scores.slice(0, 10); 
 
     try {
-        const rankingKey = `multiplicacionRanking_${mode}`;
+        const rankingKey = `acentuadorRanking_${mode}`;
         localStorage.setItem(rankingKey, JSON.stringify(scores));
     } catch (e) {
         console.error(`Error guardando ranking para el modo ${mode}:`, e);
@@ -115,7 +115,7 @@ function resetRanking(mode) {
     const modeName = mode === 'chrono' ? 'Contrarreloj' : 'Muerte Súbita';
     if (confirm(`¿Estás seguro de que quieres borrar el ranking del modo ${modeName}?`)) {
         try {
-            const rankingKey = `multiplicacionRanking_${mode}`;
+            const rankingKey = `acentuadorRanking_${mode}`;
             localStorage.removeItem(rankingKey);
             displayRanking(null, null, mode);
         } catch (e) {
