@@ -41,6 +41,7 @@ Hay que servir la carpeta con un servidor web; abrir `index.html` con doble clic
 
 - Diccionario `es_ec.dic`: diccionario Hunspell de español (Ecuador) del proyecto [RLA-ES](https://github.com/sbosio/rla-es), con licencia triple GPL, LGPL o MPL.
 - Tipografías [Poppins](https://fonts.google.com/specimen/Poppins), [Orbitron](https://fonts.google.com/specimen/Orbitron) y [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (SIL Open Font License), de Google Fonts.
+- Música de bancos de música libre de derechos.
 
 ---
 
