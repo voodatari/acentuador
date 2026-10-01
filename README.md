@@ -45,4 +45,4 @@ Hay que servir la carpeta con un servidor web; abrir `index.html` con doble clic
 
 ---
 
-Hecho por Daniel Vera (profe Dani).
+Hecho por profe Dani.
